@@ -11,6 +11,7 @@ import threading
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
+from sqlalchemy import text
 from sqlalchemy.engine import Connection, Engine
 
 from returns_platform import db, ids
@@ -427,27 +428,40 @@ class ReturnsService:
         self._metrics_cache = (v, m)
         return m
 
-    def exceptions(self, limit: int = 100) -> dict:
-        """Operational exception queue — what needs a human today."""
+    def exceptions(self, limit: int = 50) -> dict:
+        """Operational exception queue — what needs a human today. Counts are true totals;
+        item lists are the most recent `limit` per queue."""
         t = now()
         sla = self.policy.sla
-        out = defaultdict(list)
+        recv_cut = t - timedelta(days=sla.get("receipt_to_inspection_days", 2))
+        ins_cut = t - timedelta(days=sla.get("inspection_to_refund_days", 3))
+        queues = {
+            "lost_shipments": ("return_shipment", "status = 'LOST'", {}, "rts_id DESC",
+                               lambda r: dict(rma_id=r["rma_id"], rts_id=r["rts_id"], carrier=r["carrier"],
+                                              action="raise carrier claim; contact customer")),
+            "awaiting_inspection_past_sla": ("return_shipment",
+                "received_at <= :cut AND rma_id IN (SELECT rma_id FROM return_request WHERE status = 'RECEIVED')",
+                {"cut": recv_cut.strftime("%Y-%m-%d %H:%M:%S")}, "received_at",
+                lambda r: dict(rma_id=r["rma_id"], received_at=r["received_at"], action="inspect today")),
+            "awaiting_refund_past_sla": ("inspection",
+                "inspected_at <= :cut AND received_qty > 0 AND return_line_id IN (SELECT return_line_id FROM return_line "
+                "WHERE resolution = 'PENDING' AND rma_id IN (SELECT rma_id FROM return_request WHERE request_type = 'REFUND'))",
+                {"cut": ins_cut.strftime("%Y-%m-%d %H:%M:%S")}, "inspected_at",
+                lambda r: dict(return_line_id=r["return_line_id"], inspected_at=r["inspected_at"], action="issue refund")),
+            "blocked_refund_attempts": ("refund", "status <> 'SUCCEEDED'", {}, "refund_id DESC",
+                lambda r: dict(refund_id=r["refund_id"], rma_id=r["rma_id"], status=r["status"],
+                               requested_amount_paise=r["requested_amount_paise"])),
+            "empty_or_missing_parcels": ("inspection", "received_qty = 0", {}, "inspection_id DESC",
+                lambda r: dict(inspection_id=r["inspection_id"], return_line_id=r["return_line_id"], action="investigate / fraud review")),
+            "window_overrides": ("return_request", "override_flag = :t", {"t": True}, "rma_id DESC",
+                lambda r: dict(rma_id=r["rma_id"], by=r["override_by"], reason=r["override_reason"])),
+        }
+        out, counts = {}, {}
         with self.engine.connect() as conn:
-            for s in db.select(conn, "return_shipment", "status = 'LOST'", order_by="rts_id DESC", limit=limit):
-                out["lost_shipments"].append(dict(rma_id=s["rma_id"], rts_id=s["rts_id"], carrier=s["carrier"],
-                                                  action="raise carrier claim; contact customer"))
-            for s in db.select(conn, "return_shipment", "status = 'RECEIVED'", order_by="received_at", limit=2000):
-                rma = db.get(conn, "return_request", s["rma_id"])
-                if rma["status"] == "RECEIVED" and (t - s["received_at"]).days >= sla.get("receipt_to_inspection_days", 2):
-                    out["awaiting_inspection_past_sla"].append(dict(rma_id=s["rma_id"], received_at=s["received_at"]))
-            for r in db.select(conn, "refund", "status <> 'SUCCEEDED'", order_by="refund_id DESC", limit=limit):
-                out["blocked_refund_attempts"].append(dict(refund_id=r["refund_id"], rma_id=r["rma_id"], status=r["status"],
-                                                           requested_amount_paise=r["requested_amount_paise"]))
-            for i in db.select(conn, "inspection", "received_qty = 0", order_by="inspection_id DESC", limit=limit):
-                out["empty_or_missing_parcels"].append(dict(inspection_id=i["inspection_id"], return_line_id=i["return_line_id"]))
-            for r in db.select(conn, "return_request", "override_flag = :t", {"t": True}, order_by="rma_id DESC", limit=limit):
-                out["window_overrides"].append(dict(rma_id=r["rma_id"], by=r["override_by"], reason=r["override_reason"]))
-        return {k: v[:limit] for k, v in out.items()} | {"counts": {k: len(v) for k, v in out.items()}}
+            for name, (table, where, params, order, shape) in queues.items():
+                counts[name] = conn.execute(text(f"SELECT COUNT(*) FROM {table} WHERE {where}"), params).scalar()
+                out[name] = [shape(r) for r in db.select(conn, table, where, params, order_by=order, limit=limit)]
+        return out | {"counts": counts}
 
     def integrity(self) -> dict:
         """Run the five anomaly detectors + core checks over live data."""
