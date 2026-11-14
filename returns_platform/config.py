@@ -50,7 +50,7 @@ class Policy:
 
 
 def load_policy(path: Path | str = DEFAULT_POLICY_PATH) -> Policy:
-    raw = yaml.safe_load(Path(path).read_text())
+    raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     cats = {
         name: CategoryRule(name=name, **spec) for name, spec in raw["categories"].items()
     }
