@@ -13,25 +13,92 @@ validation suite scored against it.
 Architecture, state machine and rule details: [`docs/architecture.md`](docs/architecture.md).
 Every table and field: [`docs/data_dictionary.md`](docs/data_dictionary.md).
 
-## Quick start
+## Sample data included in this repo
+
+`data/starter/` holds a ready-made dataset (3,000 orders · 500 return requests · 800 return lines, seed `20261022`),
+so you can inspect the output without running anything:
+
+```
+data/starter/
+  csv/  json/  sql/        the 12 tables as CSV, JSON, and SQLite/PostgreSQL schema + seed files
+  ground_truth/            anomalies.csv/json (planted errors) · expected_outcomes.csv/json (rule-derived labels)
+  manifest.json            generator command, seed, settings, policy hash, SHA-256 of every file
+  validation_summary.md    all 79 checks, anomaly detection precision/recall, coverage and KPIs
+```
+
+The full 30,000-order dataset (~125 MB) is not committed; it regenerates byte-identically with one command (below).
+
+## Run it — Windows (PowerShell)
+
+Requires Python 3.10+.
+
+```powershell
+cd path\to\returns-platform                     # the folder containing this README
+python -m venv .venv
+.venv\Scripts\Activate.ps1                       # prompt now starts with (.venv)
+pip install -r requirements.txt
+
+python -m pytest -q                                # 64 passed
+python -m returns_platform generate --scale full --out out/full                 # ends with: validation: PASS (79/79 checks)
+python -m returns_platform load-db --data out/full --url sqlite:///out/returns.db
+python -m returns_platform serve --url sqlite:///out/returns.db                 # open http://127.0.0.1:8000
+```
+
+Stop the server with `Ctrl + C`. Next time, just activate the venv and run the `serve` line.
+
+## Run it — macOS / Linux
 
 ```bash
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-make test          # 63 tests: unit, property-based, pipeline, mutation, API end-to-end, edge cases
+make test          # 64 tests: unit, property-based, pipeline, mutation, API end-to-end, edge cases
 make data          # 30k orders / 5k requests / 8k lines + validation  (~15 s)
 make reproduce     # generate twice, compare SHA-256 of every file
 make db serve      # load into SQLite and open http://127.0.0.1:8000
 ```
 
-PostgreSQL instead of SQLite: `make db serve DB_URL=postgresql+psycopg://user:pass@host/db`, or `docker compose up`.
+PostgreSQL instead of SQLite: pass `--url postgresql+psycopg://user:pass@host/db` to `load-db` and `serve`
+(or `make db serve DB_URL=...`), or `docker compose up`.
 
-Generator command (also recorded in `manifest.json`):
+## Other commands
 
-```bash
-python -m returns_platform generate --scale full --seed 20261022 --out out/full
-```
+| Command | What it does |
+|---|---|
+| `python -m returns_platform generate --scale full --seed 20261022 --out out/full` | Generate, export and validate (also recorded in `manifest.json`) |
+| `python -m returns_platform validate --data out/full` | Re-run all 79 checks; ends with `overall: PASS` |
+| `python -m returns_platform reproduce --scale full --report docs/reproducibility_full.md` | Generate twice, compare SHA-256 of every file |
+| `python -m returns_platform docs` | Regenerate the data dictionary and DDL from the schema spec |
 
 `--scale starter` (3k orders), `full` (30k) and `tiny` (400, for tests) run **the same generator**; only the counts differ.
+
+## Using the app
+
+The demo clock starts at 2026-10-25 10:00 (just after the data snapshot) and runs forward in real time, so return
+windows look live. Switch roles with the tabs at the top:
+
+1. **Customer** — pick an order; each line shows its return window ("N days left", "closed", "Not returnable",
+   "Already returned"). Enter a quantity and reason, submit, and see the policy decision with its reason. Then
+   click *I've handed the parcel to the courier*.
+2. **Operator** — open the RMA (type its id, e.g. `RMA-2026-005001`). Each line shows only the **Next** step:
+   receive → inspect (units + grade) → decide disposition → issue refund. Under *Test duplicate protection*,
+   *Retry with same key* returns the stored refund and *Simulate double-submit* is blocked and recorded.
+3. **Analyst** — return rate by category, why customers return (our-fault reasons highlighted), what happens
+   to returned units, why lines are rejected.
+4. **Ops manager** — open backlog by stage and time waiting, SLA breaches, carrier loss rates, weekly
+   throughput, window overrides by operator, the exception queue with next actions, and **Run detectors**
+   (shows the 40 planted anomalies of each type; your own actions add none).
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `python` not found | macOS/Linux: use `python3`. Windows: reinstall Python with *Add python.exe to PATH* ticked. |
+| `Activate.ps1 cannot be loaded … running scripts is disabled` | Run once: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| `No module named …` | The venv isn't active — run the activate line again. |
+| Port 8000 in use | Add `--port 8001` to `serve`. |
+| Every return is rejected "window expired" | `RETURNS_CLOCK` is set in your shell, freezing time. PowerShell: `Remove-Item Env:RETURNS_CLOCK`. |
+| `git log` shows `:` and won't return | Press `q`; or use `git --no-pager log --oneline`. |
+| Fresh start | Delete `out/`, then run `generate` and `load-db` again (this discards returns created in the app). |
 
 ## What the generator produces
 
@@ -106,7 +173,7 @@ nothing, and detectors must flag every labelled anomaly of their type and nothin
 ## Reproducibility
 
 Each generation stage has its own SHA-256-derived RNG stream from the single seed `20261022`, so changing the
-anomaly volume doesn't move the baseline (that's tested too). `make reproduce` generates twice in clean
+anomaly volume doesn't move the baseline (that's tested too). The `reproduce` command generates twice in clean
 directories and compares the row count and SHA-256 of all 32 output files. The result is identical at both scales:
 see [`docs/reproducibility_full.md`](docs/reproducibility_full.md). `manifest.json` records the command, seed,
 settings, policy file hash, Python version and a checksum for every file.
@@ -131,6 +198,7 @@ returns_platform/
   api/services.py, api/app.py    application services + HTTP routes
   cli.py                         generate · validate · reproduce · load-db · serve · docs
 web/                             presentation tier
+data/starter/                    committed sample dataset (same generator and seed, starter scale)
 db/                              generated DDL (sqlite, postgres)
 docs/                            architecture, data dictionary, reproducibility reports, source manifest
 tests/                           domain, pipeline + mutation, API end-to-end

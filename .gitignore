@@ -8,3 +8,6 @@ __pycache__/
 out/
 *.db
 *.sqlite
+
+# patch files used to deliver changes
+*.patch
