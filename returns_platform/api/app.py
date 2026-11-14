@@ -5,7 +5,7 @@ and `X-Actor` (their id). Swap `actor()` for real auth (OIDC/JWT) without touchi
 """
 from __future__ import annotations
 
-from pathlib import Path
+from datetime import datetime
 from typing import Literal
 
 from fastapi import Depends, FastAPI, Header, Query, Request
@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from returns_platform import db
-from returns_platform.api.services import DomainError, ReturnsService
+from returns_platform.api.services import CLOCK, DomainError, ReturnsService
 from returns_platform.config import ROOT, load_policy
 
 WEB_DIR = ROOT / "web"
@@ -72,9 +72,12 @@ class RefundIn(BaseModel):
     amount_paise: int | None = Field(None, ge=0, description="Optional. Must equal the policy-computed amount.")
 
 
-def create_app(db_url: str = "sqlite:///out/returns.db") -> FastAPI:
+def create_app(db_url: str = "sqlite:///out/returns.db", clock_start: datetime | None = None) -> FastAPI:
+    """clock_start: run the demo clock from this instant (floored at the latest stored event)."""
     policy = load_policy()
     svc = ReturnsService(db.make_engine(db_url), policy)
+    if clock_start is not None:
+        CLOCK.run_from(clock_start, floor=svc.latest_event_at())
     app = FastAPI(title="Returns Management API", version="1.0",
                   description="Eligibility → authorization → shipment → inspection → refund → disposition.")
     app.state.svc = svc
@@ -91,7 +94,8 @@ def create_app(db_url: str = "sqlite:///out/returns.db") -> FastAPI:
     def health():
         with svc.engine.connect() as c:
             n = c.exec_driver_sql("SELECT COUNT(*) FROM return_request").scalar()
-        return {"status": "ok", "dialect": db.dialect(svc.engine), "return_requests": n, "policy": policy.version}
+        return {"status": "ok", "dialect": db.dialect(svc.engine), "return_requests": n, "policy": policy.version,
+                "clock": {"mode": CLOCK.mode, "now": CLOCK.now().isoformat(sep=" ")}}
 
     @app.get("/api/policy")
     def get_policy():

@@ -2,7 +2,6 @@ PY      ?= python3
 SEED    ?= 20261022
 SCALE   ?= full
 DB_URL  ?= sqlite:///out/returns.db
-CLOCK   ?= 2026-10-25T10:00:00
 
 .PHONY: install test data starter validate reproduce db serve docs all clean
 
@@ -27,8 +26,8 @@ reproduce:          ## generate twice, compare row counts + SHA-256
 db: data            ## load dataset into the database (SQLite by default; set DB_URL for Postgres)
 	$(PY) -m returns_platform load-db --data out/$(SCALE) --url $(DB_URL)
 
-serve:              ## API + web UI on http://127.0.0.1:8000 (clock pinned just after the data snapshot)
-	RETURNS_CLOCK=$(CLOCK) $(PY) -m returns_platform serve --url $(DB_URL)
+serve:              ## API + web UI on http://127.0.0.1:8000 (demo clock starts just after the data snapshot)
+	$(PY) -m returns_platform serve --url $(DB_URL)
 
 docs:               ## regenerate data dictionary + DDL from the schema spec
 	$(PY) -m returns_platform docs

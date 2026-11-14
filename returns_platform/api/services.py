@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import threading
+import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
@@ -32,12 +33,49 @@ class DomainError(Exception):
         self.code, self.message, self.status, self.detail = code, message, status, detail or {}
 
 
+class BusinessClock:
+    """UTC business time, second precision. Three modes, in priority order:
+
+    * pinned  — env RETURNS_CLOCK set: frozen at that instant (tests, reproducible scripts)
+    * running — demo mode: starts at a given instant and advances in real time, so
+                timelines look natural; `run_from` floors the start at the latest event
+                already in the database so restarting the server never moves time backwards
+    * real    — wall-clock UTC (production)
+    """
+
+    def __init__(self):
+        self._base: datetime | None = None
+        self._t0 = 0.0
+
+    def run_from(self, start: datetime, floor: datetime | None = None) -> datetime:
+        if floor is not None and floor + timedelta(minutes=1) > start:
+            start = floor + timedelta(minutes=1)
+        self._base, self._t0 = start.replace(microsecond=0), time.monotonic()
+        return self._base
+
+    def real_time(self) -> None:
+        self._base = None
+
+    @property
+    def mode(self) -> str:
+        if os.environ.get("RETURNS_CLOCK"):
+            return "pinned"
+        return "running" if self._base else "real"
+
+    def now(self) -> datetime:
+        pinned = os.environ.get("RETURNS_CLOCK")
+        if pinned:
+            return datetime.fromisoformat(pinned).replace(tzinfo=None, microsecond=0)
+        if self._base is not None:
+            return (self._base + timedelta(seconds=time.monotonic() - self._t0)).replace(microsecond=0)
+        return datetime.now(timezone.utc).replace(tzinfo=None, microsecond=0)
+
+
+CLOCK = BusinessClock()
+
+
 def now() -> datetime:
-    """Business clock (UTC, second precision). RETURNS_CLOCK pins it for tests/demos."""
-    pinned = os.environ.get("RETURNS_CLOCK")
-    if pinned:
-        return datetime.fromisoformat(pinned).replace(tzinfo=None, microsecond=0)
-    return datetime.now(timezone.utc).replace(tzinfo=None, microsecond=0)
+    return CLOCK.now()
 
 
 class ReturnsService:
@@ -47,6 +85,13 @@ class ReturnsService:
         self._metrics_cache: tuple[int, dict] | None = None
         self._version = 0
         self._lock = threading.Lock()
+
+    def latest_event_at(self) -> datetime | None:
+        with self.engine.connect() as conn:
+            v = conn.execute(text("SELECT MAX(occurred_at) FROM return_event")).scalar()
+        if v is None:
+            return None
+        return v if isinstance(v, datetime) else datetime.strptime(str(v)[:19], "%Y-%m-%d %H:%M:%S")
 
     # ------------------------------------------------------------------ helpers
     def _bump(self):

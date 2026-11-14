@@ -124,6 +124,9 @@ def main(argv=None) -> int:
     sv.add_argument("--url", default="sqlite:///out/returns.db")
     sv.add_argument("--host", default="127.0.0.1")
     sv.add_argument("--port", type=int, default=8000)
+    sv.add_argument("--clock-start", default="2026-10-25T10:00:00",
+                    help="demo clock start (just after the data snapshot); runs forward in real time")
+    sv.add_argument("--real-time", action="store_true", help="use the real wall clock instead of the demo clock")
     sub.add_parser("docs", help="regenerate data dictionary and DDL files")
     a = ap.parse_args(argv)
 
@@ -138,9 +141,20 @@ def main(argv=None) -> int:
         n = load_dataset(a.url, a.data)
         print(f"loaded {n:,} rows into {a.url}")
     elif a.cmd == "serve":
+        import os
+        from datetime import datetime
+
         import uvicorn
         from returns_platform.api.app import create_app
-        uvicorn.run(create_app(a.url), host=a.host, port=a.port)
+        from returns_platform.api.services import CLOCK
+        start = None if a.real_time else datetime.fromisoformat(a.clock_start)
+        app = create_app(a.url, clock_start=start)
+        if os.environ.get("RETURNS_CLOCK"):
+            print(f"note: RETURNS_CLOCK is set, so the clock is frozen at {os.environ['RETURNS_CLOCK']}. "
+                  "Unset it for a running demo clock (PowerShell: Remove-Item Env:RETURNS_CLOCK).")
+        else:
+            print(f"business clock: {CLOCK.mode}, now {CLOCK.now()}")
+        uvicorn.run(app, host=a.host, port=a.port)
     elif a.cmd == "docs":
         cmd_docs()
     return 0

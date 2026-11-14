@@ -270,3 +270,20 @@ def test_generator_valid_for_any_seed(tmp_path, seed):
     cmd_generate("tiny", seed, tmp_path / "d", quiet=True)
     s = cmd_validate(tmp_path / "d", quiet=True)
     assert s["overall_status"] == "PASS", [c["name"] for c in s["checks"] if c["status"] != "PASS"]
+
+
+# --------------------------------------------------------------------------- demo clock
+def test_demo_clock_runs_forward_and_never_goes_back(monkeypatch):
+    import time as _t
+    from datetime import datetime
+    from returns_platform.api.services import BusinessClock
+    monkeypatch.delenv("RETURNS_CLOCK", raising=False)
+    c = BusinessClock()
+    start = datetime(2026, 10, 25, 10, 0, 0)
+    assert c.run_from(start) == start
+    _t.sleep(1.1)
+    assert c.now() > start and c.mode == "running"
+    later = datetime(2026, 10, 30, 9, 0, 0)                 # events already exist after the start
+    assert c.run_from(start, floor=later) > later            # restart resumes after them
+    monkeypatch.setenv("RETURNS_CLOCK", "2026-10-26T08:00:00")
+    assert c.mode == "pinned" and c.now() == datetime(2026, 10, 26, 8, 0, 0)
