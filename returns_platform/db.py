@@ -18,11 +18,19 @@ from returns_platform.schema.spec import LOAD_ORDER, TABLES
 def make_engine(url: str) -> Engine:
     if url.startswith("sqlite:///"):
         Path(url.removeprefix("sqlite:///")).parent.mkdir(parents=True, exist_ok=True)
-    engine = create_engine(url, future=True)
+    engine = create_engine(url, future=True, connect_args={"timeout": 30} if url.startswith("sqlite") else {})
     if engine.dialect.name == "sqlite":
         @event.listens_for(engine, "connect")
-        def _fk_on(dbapi_conn, _):                 # SQLite ignores FKs unless asked
-            dbapi_conn.execute("PRAGMA foreign_keys = ON")
+        def _on_connect(dbapi_conn, _):
+            dbapi_conn.isolation_level = None          # stop pysqlite deferring BEGIN until the first write
+            dbapi_conn.execute("PRAGMA foreign_keys = ON")   # SQLite ignores FKs unless asked
+
+        @event.listens_for(engine, "begin")
+        def _begin_immediate(conn):
+            # Take the write lock when the transaction starts, so the reads a use-case makes
+            # (e.g. "is there already a successful refund?") and its writes are one atomic unit.
+            # Without this, two concurrent refunds could both read "none yet" and both pay out.
+            conn.exec_driver_sql("BEGIN IMMEDIATE")
     return engine
 
 

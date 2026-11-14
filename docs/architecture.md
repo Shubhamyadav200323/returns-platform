@@ -86,8 +86,8 @@ COD orders are refunded as store credit.
 **Duplicate-payout guard** — every refund call needs an `Idempotency-Key`:
 same key → the stored result is returned (no new row); new key after a successful payout → a
 `REJECTED_DUPLICATE` row is written (amount 0, `duplicate_of_refund_id` set); asking for more than
-remains payable → `REJECTED_EXCEEDS_PAID`. On PostgreSQL the return line is locked `FOR UPDATE`, so two
-concurrent calls cannot both pass the guard.
+remains payable → `REJECTED_EXCEEDS_PAID`. Concurrent calls cannot both pass the guard: on PostgreSQL the return line
+is locked `FOR UPDATE`; on SQLite every write transaction starts with `BEGIN IMMEDIATE`.
 
 **Disposition** (`domain/disposition.py`) — requires an inspection; the grade and the category's
 `refurbishable` flag decide RESTOCK / REFURBISH / QUARANTINE / SCRAP. Only RESTOCK increases sellable stock.
@@ -110,7 +110,7 @@ documented rule.
 | Cumulative proportional slicing | any sequence of partial returns sums to the line total | slightly less intuitive than unit price × qty |
 | Append-only events + status projection | full history, verifiable | status must be kept in sync (checked by a validator) |
 | Per-stage SHA-256 seeded RNG streams | changing one stage (e.g. anomaly volume) doesn't reshuffle others | more seeds to reason about |
-| Duplicate guard in the service (not a DB unique index) | the dataset can carry labelled duplicate payouts for evaluation | relies on the row lock on Postgres; SQLite serialises writes anyway |
+| Duplicate guard in the service (not a DB unique index) | the dataset can carry labelled duplicate payouts for evaluation | correctness depends on transaction isolation: `SELECT … FOR UPDATE` on Postgres, `BEGIN IMMEDIATE` on SQLite; an 8-way concurrent refund test proves one payout on both |
 | Snapshot clock (`as_of`) | realistic in-flight returns at the cut-off | demo server pins `RETURNS_CLOCK` just after the snapshot |
 | Dependency-free web UI | runs anywhere FastAPI runs, no build step | less component structure than React |
 | X-Role / X-Actor headers | keeps focus on the domain; one function to swap for OIDC/JWT | not real authentication |

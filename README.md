@@ -17,7 +17,7 @@ Every table and field: [`docs/data_dictionary.md`](docs/data_dictionary.md).
 
 ```bash
 pip install -r requirements.txt
-make test          # 46 tests: unit, property-based, pipeline, mutation, API end-to-end
+make test          # 63 tests: unit, property-based, pipeline, mutation, API end-to-end, edge cases
 make data          # 30k orders / 5k requests / 8k lines + validation  (~15 s)
 make reproduce     # generate twice, compare SHA-256 of every file
 make db serve      # load into SQLite and open http://127.0.0.1:8000
@@ -89,6 +89,19 @@ nothing, and detectors must flag every labelled anomaly of their type and nothin
 - eligibility decisions on non-anomalous lines agree **100%** with the expected outcomes
 - mutation tests show the suite also catches tampering it was *not* told about: 1-paisa changes, a broken FK,
   status not matching events, disposition ignoring grade, refund before inspection, duplicate PKs
+
+## Edge cases tested beyond the brief
+
+`tests/test_edge_cases.py` probes cases nobody listed:
+
+- a line returned in pieces across two RMAs reconciles to the exact paisa paid
+- the return-shipping fee is charged once per RMA and never on merchant-fault lines
+- partial receipts refund only what arrived; an empty parcel closes with no refund and no stock movement
+- shipping after the ship-by date expires the RMA; a lost parcel can't later be received
+- a request before delivery is refused; a mixed RMA (one excluded line) completes on its approved lines only
+- an exchange can't be refunded; an idempotency key can't be reused on another line; malformed input is rejected
+- **8 simultaneous refund calls produce exactly one payout and seven recorded duplicates** (SQLite and PostgreSQL)
+- the generator produces a fully valid dataset for five arbitrary seeds, not just the default
 
 ## Reproducibility
 
