@@ -1,0 +1,9 @@
+[project]
+name = "returns-platform"
+version = "0.1.0"
+description = "Returns management: eligibility, authorization, inspection, refund, disposition + synthetic data generator"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
