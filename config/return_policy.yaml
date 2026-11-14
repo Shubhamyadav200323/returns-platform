@@ -1,0 +1,62 @@
+# Return policy — versioned business configuration.
+# The rule engines read ONLY from this file; nothing policy-related is hard-coded.
+# Money is in paise (INR minor units). Rates are basis points (bp, 10000 = 100%).
+
+policy_version: "RP-2026.1"
+effective_from: "2026-01-01"
+currency: INR
+
+# Return window is counted in calendar days from delivery date (inclusive).
+categories:
+  ELECTRONICS:   { window_days: 10, returnable: true,  restocking_fee_bp: 1000, refurbishable: true,  tax_rate_bp: 1800 }
+  APPLIANCES:    { window_days: 10, returnable: true,  restocking_fee_bp: 1000, refurbishable: true,  tax_rate_bp: 1800 }
+  APPAREL:       { window_days: 30, returnable: true,  restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 1200 }
+  FOOTWEAR:      { window_days: 30, returnable: true,  restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 1200 }
+  HOME_KITCHEN:  { window_days: 15, returnable: true,  restocking_fee_bp: 500,  refurbishable: true,  tax_rate_bp: 1800 }
+  BOOKS:         { window_days: 7,  returnable: true,  restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 0 }
+  TOYS:          { window_days: 15, returnable: true,  restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 1200 }
+  BEAUTY:        { window_days: 0,  returnable: false, restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 1800 }   # hygiene exclusion
+  GROCERY:       { window_days: 0,  returnable: false, restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 500 }    # perishable exclusion
+  GIFT_CARDS:    { window_days: 0,  returnable: false, restocking_fee_bp: 0,    refurbishable: false, tax_rate_bp: 0 }      # non-returnable
+
+# Reasons are classified by fault. Customer-fault returns pay fees; merchant-fault returns do not.
+reasons:
+  DEFECTIVE:         merchant
+  WRONG_ITEM:        merchant
+  NOT_AS_DESCRIBED:  merchant
+  ARRIVED_DAMAGED:   merchant
+  SIZE_FIT:          customer
+  CHANGED_MIND:      customer
+  BETTER_PRICE:      customer
+
+# Flat return-shipping fee, charged once per RMA on customer-fault returns,
+# deducted from the first refund issued against that RMA.
+return_shipping_fee_paise: 9900
+
+# Share of item value refunded, by inspection grade.
+grade_refund_bp:
+  A_NEW:        10000
+  B_LIKE_NEW:   10000
+  C_USED:       8000
+  D_DAMAGED:    5000
+  E_DEFECTIVE:  10000
+
+# Damage noticed at inspection is not penalised when the customer reported it as merchant fault.
+merchant_fault_grade_floor_bp: 10000
+
+# Disposition decided from inspection grade. `if_refurbishable` / `otherwise`
+# branch on the category's refurbishable flag.
+disposition_by_grade:
+  A_NEW:       { if_refurbishable: RESTOCK,   otherwise: RESTOCK }
+  B_LIKE_NEW:  { if_refurbishable: RESTOCK,   otherwise: RESTOCK }
+  C_USED:      { if_refurbishable: REFURBISH, otherwise: SCRAP }
+  D_DAMAGED:   { if_refurbishable: REFURBISH, otherwise: SCRAP }
+  E_DEFECTIVE: { if_refurbishable: QUARANTINE, otherwise: QUARANTINE }   # held for vendor return / QA
+
+# Days the customer has to ship after authorization before the RMA expires.
+ship_by_days: 14
+
+# Lifecycle SLAs used by analytics (days).
+sla:
+  receipt_to_inspection_days: 2
+  inspection_to_refund_days: 3
