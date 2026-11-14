@@ -14,6 +14,7 @@
       <button data-role="customer" class="active">Customer</button>
       <button data-role="operator">Operator</button>
       <button data-role="analyst">Analyst</button>
+      <button data-role="manager">Ops manager</button>
     </nav>
     <div class="health" id="health">connecting…</div>
   </header>
@@ -55,17 +56,26 @@
       </div>
     </section>
 
-    <!-- ANALYST ----------------------------------------------------------------->
+    <!-- ANALYST: merchandising / e-commerce ------------------------------------>
     <section id="view-analyst" class="view">
       <div class="kpis" id="kpis"></div>
       <div class="grid2">
         <div class="panel"><h2>Return request rate by category</h2><div id="chart-cat"></div></div>
-        <div class="panel"><h2>Disposition of returned units</h2><div id="chart-disp"></div></div>
+        <div class="panel"><h2>Why customers return</h2><div id="chart-reason"></div></div>
+        <div class="panel"><h2>What happens to returned units</h2><div id="chart-disp"></div></div>
         <div class="panel"><h2>Why lines are rejected or clamped</h2><div id="chart-rej"></div></div>
-        <div class="panel"><h2>Where returns are now</h2><div id="chart-status"></div></div>
       </div>
+    </section>
+
+    <!-- OPERATIONS MANAGER ------------------------------------------------------>
+    <section id="view-manager" class="view">
+      <div class="kpis" id="mgr-kpis"></div>
       <div class="grid2">
+        <div class="panel"><h2>Backlog by stage</h2><div id="mgr-backlog"></div></div>
+        <div class="panel"><h2>Carrier reliability</h2><div id="mgr-carriers"></div></div>
         <div class="panel"><h2>Exception queue</h2><div id="exceptions"></div></div>
+        <div class="panel"><h2>Returns completed per week</h2><div id="mgr-throughput"></div></div>
+        <div class="panel"><h2>Window overrides by operator</h2><div id="mgr-overrides"></div></div>
         <div class="panel"><h2>Integrity detectors <span class="muted">(live data)</span></h2><div id="integrity"><button id="run-integrity">Run detectors</button></div></div>
       </div>
     </section>

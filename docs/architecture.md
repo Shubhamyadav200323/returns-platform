@@ -7,7 +7,8 @@ flowchart TB
   subgraph P[Presentation tier — web/]
     C[Customer view<br/>request & track returns]
     O[Operator console<br/>receive · inspect · dispose · refund]
-    A[Analyst dashboard<br/>KPIs · exceptions · integrity]
+    A[Analyst dashboard<br/>return rates · reasons · recovery]
+    M[Ops manager<br/>backlog · SLA · carriers · exceptions · integrity]
   end
   subgraph AP[Application tier — returns_platform/]
     API[api/app.py<br/>HTTP, roles, input shape]
@@ -111,6 +112,6 @@ documented rule.
 | Append-only events + status projection | full history, verifiable | status must be kept in sync (checked by a validator) |
 | Per-stage SHA-256 seeded RNG streams | changing one stage (e.g. anomaly volume) doesn't reshuffle others | more seeds to reason about |
 | Duplicate guard in the service (not a DB unique index) | the dataset can carry labelled duplicate payouts for evaluation | correctness depends on transaction isolation: `SELECT … FOR UPDATE` on Postgres, `BEGIN IMMEDIATE` on SQLite; an 8-way concurrent refund test proves one payout on both |
-| Snapshot clock (`as_of`) | realistic in-flight returns at the cut-off | demo server pins `RETURNS_CLOCK` just after the snapshot |
+| Snapshot clock (`as_of`) + running demo clock | realistic in-flight returns at the cut-off; the demo clock starts just after it and never runs behind stored events | demo timestamps are 2026, not today |
 | Dependency-free web UI | runs anywhere FastAPI runs, no build step | less component structure than React |
 | X-Role / X-Actor headers | keeps focus on the domain; one function to swap for OIDC/JWT | not real authentication |

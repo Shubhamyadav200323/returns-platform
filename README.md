@@ -6,7 +6,7 @@ validation suite scored against it.
 
 | | |
 |---|---|
-| **Presentation** | `web/` — customer, operator and analyst views (served by the API, no build step) |
+| **Presentation** | `web/` — customer, operator, analyst and operations-manager views (served by the API, no build step) |
 | **Application** | `returns_platform/` — FastAPI routes → transactional services → pure domain rule engines |
 | **Data** | SQLite (zero setup) or PostgreSQL; CSV / JSON / SQL seed exports + ground truth |
 
@@ -145,7 +145,7 @@ tests/                           domain, pipeline + mutation, API end-to-end
 | POST | `/api/shipments/{rts}/ship` · `/receive` · `/lost` | customer (ship), operator |
 | POST | `/api/return-lines/{id}/inspection` · `/disposition` | operator |
 | POST | `/api/return-lines/{id}/refunds` + `Idempotency-Key` header | operator |
-| GET | `/api/metrics`, `/api/exceptions`, `/api/integrity` | analyst, manager |
+| GET | `/api/metrics` (incl. backlog, carriers, overrides), `/api/exceptions`, `/api/integrity` | analyst, manager |
 
 Interactive docs at `/docs`. Errors use one shape: `{"error": "NOT_INSPECTED", "message": "..."}`.
 
@@ -154,4 +154,4 @@ Interactive docs at `/docs`. Errors use one shape: `{"error": "NOT_INSPECTED", "
 - Authentication is a header stand-in (`X-Role`, `X-Actor`), isolated in one function so real auth can replace it.
 - Approved quantity on an expired or lost RMA isn't released for a new return; the customer goes through support.
 - The Docker files are provided but weren't run in the build environment. SQLite and PostgreSQL were both tested directly.
-- The demo server pins `RETURNS_CLOCK` to just after the data snapshot (2026-10-22), so return windows look live.
+- `serve` runs a demo business clock that starts just after the data snapshot (2026-10-22) and advances in real time, so return windows look live; it resumes after the latest stored event on restart. `--real-time` uses the wall clock; `RETURNS_CLOCK` freezes time (used by tests).

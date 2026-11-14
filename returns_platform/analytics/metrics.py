@@ -109,6 +109,57 @@ def compute_metrics(T: dict[str, list[dict]], policy=None) -> dict:
             "recovered_list_value_paise": recovered_value,
             "grade_mix": dict(Counter(i["grade"] for i in T["inspection"])),
         },
+        "reasons": {
+            "by_reason": dict(Counter(rl["reason_code"] for rl in T["return_line"])),
+            "merchant_fault_pct": _pct(sum(1 for rl in T["return_line"] if policy and policy.is_merchant_fault(rl["reason_code"])),
+                                       len(T["return_line"])) if policy else None,
+        },
+        "operations": operations(T),
+    }
+
+
+OPEN_STATES = ("REQUESTED", "AUTHORIZED", "IN_TRANSIT", "RECEIVED", "INSPECTED")
+
+
+def operations(T) -> dict:
+    """What an operations manager steers by: backlog and its age, carrier reliability,
+    who overrides policy, and weekly throughput. Ages are measured at the latest event
+    time (the data's own 'now'), so results don't depend on when you run this."""
+    events = T["return_event"]
+    as_of = max((e["occurred_at"] for e in events), default=None)
+    last_change = {}
+    completed_week = Counter()
+    for e in events:
+        if e["entity_type"] == "RETURN_REQUEST":
+            last_change[e["entity_id"]] = max(last_change.get(e["entity_id"], e["occurred_at"]), e["occurred_at"])
+            if e["to_state"] == "COMPLETED":
+                y, w, _ = e["occurred_at"].isocalendar()
+                completed_week[f"{y}-W{w:02d}"] += 1
+    backlog = {}
+    for st in OPEN_STATES:
+        ages = [(as_of - last_change[r["rma_id"]]).total_seconds() / 86400
+                for r in T["return_request"] if r["status"] == st and r["rma_id"] in last_change]
+        backlog[st] = {"count": len(ages), "oldest_days": round(max(ages), 1) if ages else 0,
+                       "over_7_days": sum(a > 7 for a in ages)}
+
+    carriers = {}
+    for c in sorted({s["carrier"] for s in T["return_shipment"]}):
+        ships = [s for s in T["return_shipment"] if s["carrier"] == c and s["shipped_at"]]
+        lost = sum(1 for s in ships if s["status"] == "LOST")
+        transit = [(s["received_at"] - s["shipped_at"]).total_seconds() / 86400 for s in ships if s["received_at"]]
+        carriers[c] = {"shipped": len(ships), "lost": lost, "lost_pct": _pct(lost, len(ships)),
+                       "median_transit_days": _median(transit)}
+
+    by_op = Counter(r["override_by"] for r in T["return_request"] if r["override_flag"])
+    weeks = sorted(completed_week)[-8:]
+    return {
+        "as_of": as_of.isoformat(sep=" ") if as_of else None,
+        "backlog": backlog,
+        "open_total": sum(b["count"] for b in backlog.values()),
+        "carriers": carriers,
+        "overrides_by_operator": dict(by_op.most_common(10)),
+        "overrides_total": sum(by_op.values()),
+        "completed_per_week": {w: completed_week[w] for w in weeks},
     }
 
 
