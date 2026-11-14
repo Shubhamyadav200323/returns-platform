@@ -253,6 +253,8 @@ SCHEMA: tuple[Table, ...] = (
             Col("attempt_no", "int", "1 for first attempt on the line", min=1),
             Col("idempotency_key", "text", "Client-supplied key; replays return the stored result", unique=True),
             Col("requested_at", "ts", "Attempt timestamp", rule=">= inspection.inspected_at"),
+            Col("processed_at", "ts", "When the payment rail confirmed (or the guard rejected) the attempt",
+                required=False, rule=">= requested_at; required when SUCCEEDED"),
             Col("refund_qty", "int", "Units refunded", min=0, unit="units", rule="= inspection.received_qty"),
             money("item_amount_paise", "Item value refunded after grade factor"),
             money("tax_amount_paise", "Tax refunded after grade factor"),

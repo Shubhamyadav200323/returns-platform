@@ -32,6 +32,7 @@ def inject(s: GenSettings, policy: Policy, ds: Dataset) -> None:
     order_by_id = {o["order_id"]: o for o in T["sales_order"]}
     rr_by_id = {r["rma_id"]: r for r in T["return_request"]}
     ins_by_line = {i["return_line_id"]: i for i in T["inspection"]}
+    auth_by_rma = {a["rma_id"]: a for a in T["return_authorization"]}
     lines_per_rma = Counter(rl["rma_id"] for rl in T["return_line"])
     rmas_per_order = Counter(r["order_id"] for r in T["return_request"])
     lines_per_ol = Counter(rl["order_line_id"] for rl in T["return_line"])
@@ -56,6 +57,7 @@ def inject(s: GenSettings, policy: Policy, ds: Dataset) -> None:
                       "approved_qty", rl["approved_qty"], bad, [rl["order_line_id"], rl["rma_id"]],
                       f"approved {bad} units but only {purchased} were purchased",
                       "SUM(approved_qty) per order_line > order_line.quantity"))
+        auth_by_rma[rl["rma_id"]]["approved_qty_total"] += bad - rl["approved_qty"]   # moves with the line
         rl["requested_qty"] = bad
         rl["approved_qty"] = bad
 
