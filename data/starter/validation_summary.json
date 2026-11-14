@@ -207,6 +207,104 @@
         "A_NEW": 195,
         "D_DAMAGED": 77
       }
+    },
+    "reasons": {
+      "by_reason": {
+        "CHANGED_MIND": 147,
+        "ARRIVED_DAMAGED": 97,
+        "DEFECTIVE": 136,
+        "SIZE_FIT": 210,
+        "NOT_AS_DESCRIBED": 73,
+        "BETTER_PRICE": 67,
+        "WRONG_ITEM": 70
+      },
+      "merchant_fault_pct": 47.0
+    },
+    "operations": {
+      "as_of": "2026-10-22 22:48:38",
+      "backlog": {
+        "REQUESTED": {
+          "count": 0,
+          "oldest_days": 0,
+          "over_7_days": 0
+        },
+        "AUTHORIZED": {
+          "count": 8,
+          "oldest_days": 7.1,
+          "over_7_days": 1
+        },
+        "IN_TRANSIT": {
+          "count": 15,
+          "oldest_days": 14.4,
+          "over_7_days": 1
+        },
+        "RECEIVED": {
+          "count": 5,
+          "oldest_days": 2.0,
+          "over_7_days": 0
+        },
+        "INSPECTED": {
+          "count": 11,
+          "oldest_days": 2.0,
+          "over_7_days": 0
+        }
+      },
+      "open_total": 39,
+      "carriers": {
+        "BLUEDART": {
+          "shipped": 84,
+          "lost": 2,
+          "lost_pct": 2.38,
+          "median_transit_days": 3.22
+        },
+        "DELHIVERY": {
+          "shipped": 138,
+          "lost": 4,
+          "lost_pct": 2.9,
+          "median_transit_days": 3.25
+        },
+        "ECOM_EXPRESS": {
+          "shipped": 68,
+          "lost": 0,
+          "lost_pct": 0.0,
+          "median_transit_days": 3.17
+        },
+        "INDIA_POST": {
+          "shipped": 42,
+          "lost": 0,
+          "lost_pct": 0.0,
+          "median_transit_days": 3.2
+        },
+        "XPRESSBEES": {
+          "shipped": 87,
+          "lost": 0,
+          "lost_pct": 0.0,
+          "median_transit_days": 3.16
+        }
+      },
+      "overrides_by_operator": {
+        "OPR-013": 4,
+        "OPR-032": 3,
+        "OPR-008": 3,
+        "OPR-002": 2,
+        "OPR-021": 2,
+        "OPR-036": 2,
+        "OPR-024": 2,
+        "OPR-016": 1,
+        "OPR-007": 1,
+        "OPR-039": 1
+      },
+      "overrides_total": 32,
+      "completed_per_week": {
+        "2026-W36": 8,
+        "2026-W37": 7,
+        "2026-W38": 12,
+        "2026-W39": 11,
+        "2026-W40": 13,
+        "2026-W41": 8,
+        "2026-W42": 11,
+        "2026-W43": 6
+      }
     }
   },
   "checks": [
