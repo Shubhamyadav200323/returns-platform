@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Returns Desk</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%274%27 fill=%27%231d1d1b%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark">↩</span> Returns Desk <span id="policy" class="muted"></span></div>
+    <nav class="roles" role="tablist" aria-label="Role">
+      <button data-role="customer" class="active">Customer</button>
+      <button data-role="operator">Operator</button>
+      <button data-role="analyst">Analyst</button>
+    </nav>
+    <div class="health" id="health">connecting…</div>
+  </header>
+
+  <main>
+    <!-- CUSTOMER ---------------------------------------------------------------->
+    <section id="view-customer" class="view active">
+      <div class="cols">
+        <aside class="panel">
+          <h2>Who are you?</h2>
+          <label>Customer
+            <select id="cust-select"></select>
+          </label>
+          <h3>Your orders</h3>
+          <ul id="cust-orders" class="list"></ul>
+          <h3>Your returns</h3>
+          <ul id="cust-returns" class="list"></ul>
+        </aside>
+        <div class="panel grow" id="order-panel">
+          <p class="empty">Pick an order to start a return.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATOR ---------------------------------------------------------------->
+    <section id="view-operator" class="view">
+      <div class="cols">
+        <aside class="panel">
+          <h2>Work queue</h2>
+          <div class="chips" id="status-chips"></div>
+          <label>Open RMA or order
+            <div class="row"><input id="lookup" placeholder="RMA-2026-000123 or ORD-2026-000456"><button id="lookup-go">Open</button></div>
+          </label>
+          <ul id="queue" class="list"></ul>
+        </aside>
+        <div class="panel grow" id="rma-panel">
+          <p class="empty">Select a return from the queue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALYST ----------------------------------------------------------------->
+    <section id="view-analyst" class="view">
+      <div class="kpis" id="kpis"></div>
+      <div class="grid2">
+        <div class="panel"><h2>Return request rate by category</h2><div id="chart-cat"></div></div>
+        <div class="panel"><h2>Disposition of returned units</h2><div id="chart-disp"></div></div>
+        <div class="panel"><h2>Why lines are rejected or clamped</h2><div id="chart-rej"></div></div>
+        <div class="panel"><h2>Where returns are now</h2><div id="chart-status"></div></div>
+      </div>
+      <div class="grid2">
+        <div class="panel"><h2>Exception queue</h2><div id="exceptions"></div></div>
+        <div class="panel"><h2>Integrity detectors <span class="muted">(live data)</span></h2><div id="integrity"><button id="run-integrity">Run detectors</button></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
