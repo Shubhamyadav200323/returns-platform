@@ -201,7 +201,7 @@ SCHEMA: tuple[Table, ...] = (
                        "return_line 1:0..1 inventory_disposition"),
     ),
     Table(
-        "return_authorization", "ReturnAuthorization", "Formal decision on an RMA (1:1).",
+        "return_authorization", "ReturnAuthorization", "Formal decision on an RMA (1:1; system decides synchronously, overrides by an operator).",
         (
             pk("auth_id", "return_authorization", "Authorization id"),
             fk("rma_id", "return_request.rma_id", "RMA decided", kind="return_request", unique=True),
@@ -259,6 +259,8 @@ SCHEMA: tuple[Table, ...] = (
             Col("grade_refund_bp", "bp", "Grade factor applied", min=0, max=10000, unit="basis points"),
             money("restocking_fee_paise", "Deducted restocking fee"),
             money("shipping_fee_paise", "Deducted return-shipping fee (once per RMA)"),
+            money("requested_amount_paise", "Amount this attempt asked to pay (computed, or an operator goodwill amount)",
+                  rule="= item + tax - restocking - shipping for computed attempts"),
             money("amount_paise", "Net paid out (0 for blocked attempts)",
                   rule="= max(0, item + tax - restocking - shipping); cumulative <= line_paid_paise"),
             Col("method", "text", "Payout rail", allowed=E.REFUND_METHODS),
