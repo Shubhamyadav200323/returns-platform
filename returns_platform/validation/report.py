@@ -150,5 +150,5 @@ def summary_markdown(summary: dict, manifest: dict) -> str:
 
 
 def write_reports(out_dir: Path, summary: dict, manifest: dict) -> None:
-    (out_dir / "validation_summary.json").write_text(json.dumps(summary, indent=2, default=str) + "\n", encoding="utf-8")
-    (out_dir / "validation_summary.md").write_text(summary_markdown(summary, manifest), encoding="utf-8")
+    (out_dir / "validation_summary.json").write_text(json.dumps(summary, indent=2, default=str) + "\n", encoding="utf-8", newline="\n")
+    (out_dir / "validation_summary.md").write_text(summary_markdown(summary, manifest), encoding="utf-8", newline="\n")

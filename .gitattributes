@@ -1,0 +1,9 @@
+# Generated data and SQL must stay byte-identical across operating systems (checksums in manifest.json).
+data/** -text
+# Source and docs: always LF in the repository.
+*.py text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf

@@ -35,7 +35,7 @@ def cmd_generate(scale: str, seed: int, out: Path, quiet=False) -> dict:
     files = export_dataset(ds, out)
     command = f"python -m returns_platform generate --scale {scale} --seed {seed} --out {out.as_posix()}"
     manifest = build_manifest(out, files, s, command)
-    (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     summary = cmd_validate(out, quiet=True, manifest=manifest)
     if not quiet:
         ad = summary["anomaly_detection"]
@@ -86,7 +86,7 @@ def cmd_reproduce(scale: str, seed: int, report_path: Path | None) -> bool:
     text = "\n".join(lines) + "\n"
     if report_path:
         report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text(text, encoding="utf-8")
+        report_path.write_text(text, encoding="utf-8", newline="\n")
     print(text if len(runs[0]) < 60 else f"reproducibility: {'IDENTICAL' if same else 'DIFFERENT'}")
     return same
 
@@ -96,11 +96,11 @@ def cmd_docs() -> None:
     from returns_platform.schema.dictionary import to_json, to_markdown
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
-    (docs / "data_dictionary.md").write_text(to_markdown(), encoding="utf-8")
-    (docs / "data_dictionary.json").write_text(json.dumps(to_json(), indent=2) + "\n", encoding="utf-8")
+    (docs / "data_dictionary.md").write_text(to_markdown(), encoding="utf-8", newline="\n")
+    (docs / "data_dictionary.json").write_text(json.dumps(to_json(), indent=2) + "\n", encoding="utf-8", newline="\n")
     for d in ("sqlite", "postgres"):
         (ROOT / "db").mkdir(exist_ok=True)
-        (ROOT / "db" / f"schema_{d}.sql").write_text(schema_ddl(d), encoding="utf-8")
+        (ROOT / "db" / f"schema_{d}.sql").write_text(schema_ddl(d), encoding="utf-8", newline="\n")
     print("wrote docs/data_dictionary.{md,json} and db/schema_{sqlite,postgres}.sql")
 
 

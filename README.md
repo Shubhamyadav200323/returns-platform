@@ -38,7 +38,7 @@ python -m venv .venv
 .venv\Scripts\Activate.ps1                       # prompt now starts with (.venv)
 pip install -r requirements.txt
 
-python -m pytest -q                                # 64 passed
+python -m pytest -q                                # 65 passed
 python -m returns_platform generate --scale full --out out/full                 # ends with: validation: PASS (79/79 checks)
 python -m returns_platform load-db --data out/full --url sqlite:///out/returns.db
 python -m returns_platform serve --url sqlite:///out/returns.db                 # open http://127.0.0.1:8000
@@ -51,7 +51,7 @@ Stop the server with `Ctrl + C`. Next time, just activate the venv and run the `
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-make test          # 64 tests: unit, property-based, pipeline, mutation, API end-to-end, edge cases
+make test          # 65 tests: unit, property-based, pipeline, mutation, API end-to-end, edge cases
 make data          # 30k orders / 5k requests / 8k lines + validation  (~15 s)
 make reproduce     # generate twice, compare SHA-256 of every file
 make db serve      # load into SQLite and open http://127.0.0.1:8000
@@ -175,7 +175,8 @@ nothing, and detectors must flag every labelled anomaly of their type and nothin
 Each generation stage has its own SHA-256-derived RNG stream from the single seed `20261022`, so changing the
 anomaly volume doesn't move the baseline (that's tested too). The `reproduce` command generates twice in clean
 directories and compares the row count and SHA-256 of all 32 output files. The result is identical at both scales:
-see [`docs/reproducibility_full.md`](docs/reproducibility_full.md). `manifest.json` records the command, seed,
+see [`docs/reproducibility_full.md`](docs/reproducibility_full.md). Every file is written with LF line endings and `.gitattributes`
+keeps git from converting `data/`, so checksums are identical on Windows, macOS and Linux (tested). `manifest.json` records the command, seed,
 settings, policy file hash, Python version and a checksum for every file.
 
 ## Provenance and lawful use

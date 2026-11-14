@@ -74,11 +74,11 @@ def write_csv(path: Path, columns, rows) -> None:
 
 def write_json(path: Path, columns, rows) -> None:
     data = [{c: to_json_value(r.get(c)) for c in columns} for r in rows]
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=0, separators=(",", ":")) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=0, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
 
 
 def write_sql_seed(path: Path, tables: dict[str, list[dict]], dialect: str, batch: int = 500) -> None:
-    with path.open("w", encoding="utf-8") as fh:
+    with path.open("w", encoding="utf-8", newline="\n") as fh:
         fh.write(f"-- Seed data ({dialect}). Generated — load after schema_{dialect}.sql.\n")
         fh.write("BEGIN;\n")
         for name in LOAD_ORDER:
@@ -111,7 +111,7 @@ def export_dataset(ds, out_dir: Path) -> list[Path]:
             written.append(p)
     for dialect in ("sqlite", "postgres"):
         p = out_dir / "sql" / f"schema_{dialect}.sql"
-        p.write_text(schema_ddl(dialect), encoding="utf-8")
+        p.write_text(schema_ddl(dialect), encoding="utf-8", newline="\n")
         written.append(p)
         p = out_dir / "sql" / f"seed_{dialect}.sql"
         write_sql_seed(p, ds.tables, dialect)

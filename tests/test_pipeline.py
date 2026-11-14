@@ -127,3 +127,11 @@ def test_mutation_is_detected(loaded, name):
 def test_unmutated_suite_passes(loaded):
     T, gt, _ = loaded
     assert all(r.passed for r in _suite(copy.deepcopy(T), gt).values())
+
+
+def test_outputs_are_byte_identical_across_operating_systems(tiny_dir):
+    """Every generated text file uses LF only, so checksums match on Windows, macOS and Linux."""
+    files = [p for p in tiny_dir.rglob("*") if p.is_file()]
+    assert files
+    for p in files:
+        assert b"\r" not in p.read_bytes(), f"{p.name} contains CR line endings"
