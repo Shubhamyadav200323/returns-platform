@@ -1,0 +1,151 @@
+product_id,product_name,category,list_price_paise,is_active
+SKU-00001,Juniper Keyboard,ELECTRONICS,709900,true
+SKU-00002,Aurora Air Fryer,APPLIANCES,689900,true
+SKU-00003,Cobalt Running Tee,APPAREL,259900,true
+SKU-00004,Peak Sneakers,FOOTWEAR,129900,true
+SKU-00005,Juniper Cookware Set,HOME_KITCHEN,329900,true
+SKU-00006,Terra Comic Anthology,BOOKS,109900,true
+SKU-00007,Saffron Board Game,TOYS,369900,true
+SKU-00008,Peak Lipstick,BEAUTY,59900,true
+SKU-00009,Kestrel Assorted Dry Fruits,GROCERY,7400,true
+SKU-00010,Orchid Gift Card,GIFT_CARDS,79900,false
+SKU-00011,Kestrel Curtains,HOME_KITCHEN,69900,true
+SKU-00012,Kestrel Keyboard,ELECTRONICS,119900,false
+SKU-00013,Aurora Table Lamp,HOME_KITCHEN,149900,true
+SKU-00014,Kestrel Comic Anthology,BOOKS,69900,true
+SKU-00015,Vega Cold-Pressed Oil,GROCERY,39900,false
+SKU-00016,Kestrel Cookbook,BOOKS,99900,true
+SKU-00017,Cobalt Smartwatch,ELECTRONICS,1389900,true
+SKU-00018,Juniper Tablet,ELECTRONICS,599900,true
+SKU-00019,Juniper Face Serum,BEAUTY,79900,true
+SKU-00020,Sable Plush Toy,TOYS,119900,true
+SKU-00021,Saffron Cookbook,BOOKS,69900,true
+SKU-00022,Monsoon Board Game,TOYS,409900,true
+SKU-00023,Terra Chinos,APPAREL,299900,true
+SKU-00024,Terra Cookware Set,HOME_KITCHEN,369900,true
+SKU-00025,Nimbus Mixer Grinder,APPLIANCES,259900,true
+SKU-00026,Aurora Chinos,APPAREL,349900,true
+SKU-00027,Sable Chinos,APPAREL,69900,true
+SKU-00028,Cobalt Linen Shirt,APPAREL,39900,true
+SKU-00029,Juniper Board Game,TOYS,539900,true
+SKU-00030,Zephyr Air Fryer,APPLIANCES,1239900,true
+SKU-00031,Saffron Storage Jars,HOME_KITCHEN,189900,true
+SKU-00032,Orchid Chinos,APPAREL,209900,true
+SKU-00033,Vega Chinos,APPAREL,399900,false
+SKU-00034,Vega Masala Box,GROCERY,29900,true
+SKU-00035,Kestrel Building Blocks,TOYS,499900,true
+SKU-00036,Terra Action Camera,ELECTRONICS,349900,true
+SKU-00037,Cobalt Sunscreen,BEAUTY,159900,true
+SKU-00038,Kestrel Storage Jars,HOME_KITCHEN,129900,true
+SKU-00039,Cobalt Masala Box,GROCERY,12300,true
+SKU-00040,Cobalt Sunscreen,BEAUTY,239900,true
+SKU-00041,Sable Table Lamp,HOME_KITCHEN,29900,true
+SKU-00042,Terra Denim Jacket,APPAREL,69900,true
+SKU-00043,Nimbus Loafers,FOOTWEAR,219900,true
+SKU-00044,Kestrel Sandals,FOOTWEAR,139900,true
+SKU-00045,Orchid Smartwatch,ELECTRONICS,639900,true
+SKU-00046,Zephyr Induction Cooktop,APPLIANCES,359900,true
+SKU-00047,Terra Plush Toy,TOYS,99900,true
+SKU-00048,Indigo Tablet,ELECTRONICS,1699900,true
+SKU-00049,Zephyr Masala Box,GROCERY,99900,true
+SKU-00050,Saffron Cookbook,BOOKS,39900,true
+SKU-00051,Cobalt Action Camera,ELECTRONICS,89900,true
+SKU-00052,Indigo Sneakers,FOOTWEAR,89900,true
+SKU-00053,Monsoon Cold-Pressed Oil,GROCERY,89900,true
+SKU-00054,Terra Cookbook,BOOKS,29900,true
+SKU-00055,Aurora Water Purifier,APPLIANCES,509900,true
+SKU-00056,Monsoon Puzzle,TOYS,69900,true
+SKU-00057,Vega Denim Jacket,APPAREL,289900,true
+SKU-00058,Juniper Biography,BOOKS,29900,true
+SKU-00059,Indigo Running Tee,APPAREL,519900,true
+SKU-00060,Zephyr Cotton Kurta,APPAREL,479900,true
+SKU-00061,Zephyr Linen Shirt,APPAREL,299900,true
+SKU-00062,Orchid Tablet,ELECTRONICS,1699900,true
+SKU-00063,Juniper Saree,APPAREL,179900,true
+SKU-00064,Lumen Linen Shirt,APPAREL,359900,true
+SKU-00065,Kestrel Chinos,APPAREL,449900,true
+SKU-00066,Terra Cotton Kurta,APPAREL,429900,true
+SKU-00067,Aurora Comic Anthology,BOOKS,39900,true
+SKU-00068,Terra Green Tea,GROCERY,29900,true
+SKU-00069,Orchid Sandals,FOOTWEAR,669900,true
+SKU-00070,Monsoon Linen Shirt,APPAREL,529900,true
+SKU-00071,Monsoon Sneakers,FOOTWEAR,59900,false
+SKU-00072,Cobalt Sunscreen,BEAUTY,39900,true
+SKU-00073,Peak Running Shoes,FOOTWEAR,329900,true
+SKU-00074,Peak Storage Jars,HOME_KITCHEN,79900,true
+SKU-00075,Aurora Sunscreen,BEAUTY,29900,true
+SKU-00076,Cobalt Saree,APPAREL,229900,true
+SKU-00077,Aurora Air Fryer,APPLIANCES,259900,true
+SKU-00078,Saffron Chinos,APPAREL,479900,true
+SKU-00079,Terra Action Camera,ELECTRONICS,1599900,true
+SKU-00080,Juniper Denim Jacket,APPAREL,309900,true
+SKU-00081,Sable Loafers,FOOTWEAR,159900,true
+SKU-00082,Zephyr Chinos,APPAREL,49900,true
+SKU-00083,Cobalt Running Shoes,FOOTWEAR,489900,true
+SKU-00084,Cobalt Chinos,APPAREL,169900,true
+SKU-00085,Aurora Plush Toy,TOYS,39900,true
+SKU-00086,Zephyr Water Purifier,APPLIANCES,4499900,true
+SKU-00087,Cobalt Exam Guide,BOOKS,49900,true
+SKU-00088,Sable Air Fryer,APPLIANCES,4959900,true
+SKU-00089,Indigo Board Game,TOYS,39900,true
+SKU-00090,Peak Induction Cooktop,APPLIANCES,2789900,true
+SKU-00091,Indigo Bedsheet,HOME_KITCHEN,29900,true
+SKU-00092,Orchid Lipstick,BEAUTY,279900,true
+SKU-00093,Peak Saree,APPAREL,409900,true
+SKU-00094,Orchid Gift Card,GIFT_CARDS,309900,true
+SKU-00095,Saffron Hoodie,APPAREL,159900,true
+SKU-00096,Zephyr Loafers,FOOTWEAR,349900,true
+SKU-00097,Cobalt Running Tee,APPAREL,289900,true
+SKU-00098,Zephyr Storage Jars,HOME_KITCHEN,29900,true
+SKU-00099,Terra Running Tee,APPAREL,179900,true
+SKU-00100,Peak Hair Oil,BEAUTY,229900,true
+SKU-00101,Orchid Storage Jars,HOME_KITCHEN,389900,true
+SKU-00102,Sable Building Blocks,TOYS,39900,true
+SKU-00103,Juniper Tablet,ELECTRONICS,269900,true
+SKU-00104,Juniper Chinos,APPAREL,149900,true
+SKU-00105,Lumen Green Tea,GROCERY,7500,true
+SKU-00106,Juniper Perfume,BEAUTY,59900,true
+SKU-00107,Saffron Basmati Rice,GROCERY,29900,true
+SKU-00108,Zephyr Formal Shoes,FOOTWEAR,119900,true
+SKU-00109,Terra Chinos,APPAREL,229900,true
+SKU-00110,Nimbus Mixer Grinder,APPLIANCES,489900,false
+SKU-00111,Aurora Denim Jacket,APPAREL,59900,true
+SKU-00112,Cobalt Hoodie,APPAREL,159900,false
+SKU-00113,Juniper Tablet,ELECTRONICS,189900,true
+SKU-00114,Sable Gift Card,GIFT_CARDS,59900,true
+SKU-00115,Cobalt Board Game,TOYS,89900,true
+SKU-00116,Peak Water Purifier,APPLIANCES,989900,true
+SKU-00117,Nimbus Wireless Earbuds,ELECTRONICS,5409900,true
+SKU-00118,Zephyr Denim Jacket,APPAREL,69900,true
+SKU-00119,Kestrel Puzzle,TOYS,109900,true
+SKU-00120,Sable Keyboard,ELECTRONICS,2429900,true
+SKU-00121,Sable Dinner Set,HOME_KITCHEN,119900,true
+SKU-00122,Aurora RC Car,TOYS,239900,true
+SKU-00123,Vega Hoodie,APPAREL,559900,true
+SKU-00124,Peak Face Serum,BEAUTY,59900,true
+SKU-00125,Saffron Cold-Pressed Oil,GROCERY,5900,true
+SKU-00126,Zephyr Chinos,APPAREL,39900,true
+SKU-00127,Cobalt Hoodie,APPAREL,39900,true
+SKU-00128,Lumen Masala Box,GROCERY,8600,true
+SKU-00129,Aurora Novel,BOOKS,29900,false
+SKU-00130,Juniper Perfume,BEAUTY,319900,true
+SKU-00131,Zephyr Lipstick,BEAUTY,59900,true
+SKU-00132,Terra Basmati Rice,GROCERY,79900,true
+SKU-00133,Sable Cold-Pressed Oil,GROCERY,16700,true
+SKU-00134,Vega Keyboard,ELECTRONICS,179900,true
+SKU-00135,Cobalt Biography,BOOKS,29900,true
+SKU-00136,Monsoon Bedsheet,HOME_KITCHEN,29900,true
+SKU-00137,Lumen Biography,BOOKS,29900,true
+SKU-00138,Orchid Perfume,BEAUTY,309900,true
+SKU-00139,Peak Power Bank,ELECTRONICS,739900,true
+SKU-00140,Indigo Cookbook,BOOKS,109900,true
+SKU-00141,Lumen Hoodie,APPAREL,319900,true
+SKU-00142,Nimbus Running Tee,APPAREL,199900,true
+SKU-00143,Nimbus Sneakers,FOOTWEAR,139900,true
+SKU-00144,Sable Dinner Set,HOME_KITCHEN,799900,true
+SKU-00145,Kestrel Cookware Set,HOME_KITCHEN,59900,true
+SKU-00146,Peak Air Fryer,APPLIANCES,609900,true
+SKU-00147,Juniper Cookware Set,HOME_KITCHEN,419900,true
+SKU-00148,Orchid Linen Shirt,APPAREL,39900,false
+SKU-00149,Nimbus Gift Card,GIFT_CARDS,329900,true
+SKU-00150,Nimbus Masala Box,GROCERY,6100,false

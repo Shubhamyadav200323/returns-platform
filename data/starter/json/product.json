@@ -1,0 +1,1052 @@
+[
+{
+"product_id":"SKU-00001",
+"product_name":"Juniper Keyboard",
+"category":"ELECTRONICS",
+"list_price_paise":709900,
+"is_active":true
+},
+{
+"product_id":"SKU-00002",
+"product_name":"Aurora Air Fryer",
+"category":"APPLIANCES",
+"list_price_paise":689900,
+"is_active":true
+},
+{
+"product_id":"SKU-00003",
+"product_name":"Cobalt Running Tee",
+"category":"APPAREL",
+"list_price_paise":259900,
+"is_active":true
+},
+{
+"product_id":"SKU-00004",
+"product_name":"Peak Sneakers",
+"category":"FOOTWEAR",
+"list_price_paise":129900,
+"is_active":true
+},
+{
+"product_id":"SKU-00005",
+"product_name":"Juniper Cookware Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":329900,
+"is_active":true
+},
+{
+"product_id":"SKU-00006",
+"product_name":"Terra Comic Anthology",
+"category":"BOOKS",
+"list_price_paise":109900,
+"is_active":true
+},
+{
+"product_id":"SKU-00007",
+"product_name":"Saffron Board Game",
+"category":"TOYS",
+"list_price_paise":369900,
+"is_active":true
+},
+{
+"product_id":"SKU-00008",
+"product_name":"Peak Lipstick",
+"category":"BEAUTY",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00009",
+"product_name":"Kestrel Assorted Dry Fruits",
+"category":"GROCERY",
+"list_price_paise":7400,
+"is_active":true
+},
+{
+"product_id":"SKU-00010",
+"product_name":"Orchid Gift Card",
+"category":"GIFT_CARDS",
+"list_price_paise":79900,
+"is_active":false
+},
+{
+"product_id":"SKU-00011",
+"product_name":"Kestrel Curtains",
+"category":"HOME_KITCHEN",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00012",
+"product_name":"Kestrel Keyboard",
+"category":"ELECTRONICS",
+"list_price_paise":119900,
+"is_active":false
+},
+{
+"product_id":"SKU-00013",
+"product_name":"Aurora Table Lamp",
+"category":"HOME_KITCHEN",
+"list_price_paise":149900,
+"is_active":true
+},
+{
+"product_id":"SKU-00014",
+"product_name":"Kestrel Comic Anthology",
+"category":"BOOKS",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00015",
+"product_name":"Vega Cold-Pressed Oil",
+"category":"GROCERY",
+"list_price_paise":39900,
+"is_active":false
+},
+{
+"product_id":"SKU-00016",
+"product_name":"Kestrel Cookbook",
+"category":"BOOKS",
+"list_price_paise":99900,
+"is_active":true
+},
+{
+"product_id":"SKU-00017",
+"product_name":"Cobalt Smartwatch",
+"category":"ELECTRONICS",
+"list_price_paise":1389900,
+"is_active":true
+},
+{
+"product_id":"SKU-00018",
+"product_name":"Juniper Tablet",
+"category":"ELECTRONICS",
+"list_price_paise":599900,
+"is_active":true
+},
+{
+"product_id":"SKU-00019",
+"product_name":"Juniper Face Serum",
+"category":"BEAUTY",
+"list_price_paise":79900,
+"is_active":true
+},
+{
+"product_id":"SKU-00020",
+"product_name":"Sable Plush Toy",
+"category":"TOYS",
+"list_price_paise":119900,
+"is_active":true
+},
+{
+"product_id":"SKU-00021",
+"product_name":"Saffron Cookbook",
+"category":"BOOKS",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00022",
+"product_name":"Monsoon Board Game",
+"category":"TOYS",
+"list_price_paise":409900,
+"is_active":true
+},
+{
+"product_id":"SKU-00023",
+"product_name":"Terra Chinos",
+"category":"APPAREL",
+"list_price_paise":299900,
+"is_active":true
+},
+{
+"product_id":"SKU-00024",
+"product_name":"Terra Cookware Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":369900,
+"is_active":true
+},
+{
+"product_id":"SKU-00025",
+"product_name":"Nimbus Mixer Grinder",
+"category":"APPLIANCES",
+"list_price_paise":259900,
+"is_active":true
+},
+{
+"product_id":"SKU-00026",
+"product_name":"Aurora Chinos",
+"category":"APPAREL",
+"list_price_paise":349900,
+"is_active":true
+},
+{
+"product_id":"SKU-00027",
+"product_name":"Sable Chinos",
+"category":"APPAREL",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00028",
+"product_name":"Cobalt Linen Shirt",
+"category":"APPAREL",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00029",
+"product_name":"Juniper Board Game",
+"category":"TOYS",
+"list_price_paise":539900,
+"is_active":true
+},
+{
+"product_id":"SKU-00030",
+"product_name":"Zephyr Air Fryer",
+"category":"APPLIANCES",
+"list_price_paise":1239900,
+"is_active":true
+},
+{
+"product_id":"SKU-00031",
+"product_name":"Saffron Storage Jars",
+"category":"HOME_KITCHEN",
+"list_price_paise":189900,
+"is_active":true
+},
+{
+"product_id":"SKU-00032",
+"product_name":"Orchid Chinos",
+"category":"APPAREL",
+"list_price_paise":209900,
+"is_active":true
+},
+{
+"product_id":"SKU-00033",
+"product_name":"Vega Chinos",
+"category":"APPAREL",
+"list_price_paise":399900,
+"is_active":false
+},
+{
+"product_id":"SKU-00034",
+"product_name":"Vega Masala Box",
+"category":"GROCERY",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00035",
+"product_name":"Kestrel Building Blocks",
+"category":"TOYS",
+"list_price_paise":499900,
+"is_active":true
+},
+{
+"product_id":"SKU-00036",
+"product_name":"Terra Action Camera",
+"category":"ELECTRONICS",
+"list_price_paise":349900,
+"is_active":true
+},
+{
+"product_id":"SKU-00037",
+"product_name":"Cobalt Sunscreen",
+"category":"BEAUTY",
+"list_price_paise":159900,
+"is_active":true
+},
+{
+"product_id":"SKU-00038",
+"product_name":"Kestrel Storage Jars",
+"category":"HOME_KITCHEN",
+"list_price_paise":129900,
+"is_active":true
+},
+{
+"product_id":"SKU-00039",
+"product_name":"Cobalt Masala Box",
+"category":"GROCERY",
+"list_price_paise":12300,
+"is_active":true
+},
+{
+"product_id":"SKU-00040",
+"product_name":"Cobalt Sunscreen",
+"category":"BEAUTY",
+"list_price_paise":239900,
+"is_active":true
+},
+{
+"product_id":"SKU-00041",
+"product_name":"Sable Table Lamp",
+"category":"HOME_KITCHEN",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00042",
+"product_name":"Terra Denim Jacket",
+"category":"APPAREL",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00043",
+"product_name":"Nimbus Loafers",
+"category":"FOOTWEAR",
+"list_price_paise":219900,
+"is_active":true
+},
+{
+"product_id":"SKU-00044",
+"product_name":"Kestrel Sandals",
+"category":"FOOTWEAR",
+"list_price_paise":139900,
+"is_active":true
+},
+{
+"product_id":"SKU-00045",
+"product_name":"Orchid Smartwatch",
+"category":"ELECTRONICS",
+"list_price_paise":639900,
+"is_active":true
+},
+{
+"product_id":"SKU-00046",
+"product_name":"Zephyr Induction Cooktop",
+"category":"APPLIANCES",
+"list_price_paise":359900,
+"is_active":true
+},
+{
+"product_id":"SKU-00047",
+"product_name":"Terra Plush Toy",
+"category":"TOYS",
+"list_price_paise":99900,
+"is_active":true
+},
+{
+"product_id":"SKU-00048",
+"product_name":"Indigo Tablet",
+"category":"ELECTRONICS",
+"list_price_paise":1699900,
+"is_active":true
+},
+{
+"product_id":"SKU-00049",
+"product_name":"Zephyr Masala Box",
+"category":"GROCERY",
+"list_price_paise":99900,
+"is_active":true
+},
+{
+"product_id":"SKU-00050",
+"product_name":"Saffron Cookbook",
+"category":"BOOKS",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00051",
+"product_name":"Cobalt Action Camera",
+"category":"ELECTRONICS",
+"list_price_paise":89900,
+"is_active":true
+},
+{
+"product_id":"SKU-00052",
+"product_name":"Indigo Sneakers",
+"category":"FOOTWEAR",
+"list_price_paise":89900,
+"is_active":true
+},
+{
+"product_id":"SKU-00053",
+"product_name":"Monsoon Cold-Pressed Oil",
+"category":"GROCERY",
+"list_price_paise":89900,
+"is_active":true
+},
+{
+"product_id":"SKU-00054",
+"product_name":"Terra Cookbook",
+"category":"BOOKS",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00055",
+"product_name":"Aurora Water Purifier",
+"category":"APPLIANCES",
+"list_price_paise":509900,
+"is_active":true
+},
+{
+"product_id":"SKU-00056",
+"product_name":"Monsoon Puzzle",
+"category":"TOYS",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00057",
+"product_name":"Vega Denim Jacket",
+"category":"APPAREL",
+"list_price_paise":289900,
+"is_active":true
+},
+{
+"product_id":"SKU-00058",
+"product_name":"Juniper Biography",
+"category":"BOOKS",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00059",
+"product_name":"Indigo Running Tee",
+"category":"APPAREL",
+"list_price_paise":519900,
+"is_active":true
+},
+{
+"product_id":"SKU-00060",
+"product_name":"Zephyr Cotton Kurta",
+"category":"APPAREL",
+"list_price_paise":479900,
+"is_active":true
+},
+{
+"product_id":"SKU-00061",
+"product_name":"Zephyr Linen Shirt",
+"category":"APPAREL",
+"list_price_paise":299900,
+"is_active":true
+},
+{
+"product_id":"SKU-00062",
+"product_name":"Orchid Tablet",
+"category":"ELECTRONICS",
+"list_price_paise":1699900,
+"is_active":true
+},
+{
+"product_id":"SKU-00063",
+"product_name":"Juniper Saree",
+"category":"APPAREL",
+"list_price_paise":179900,
+"is_active":true
+},
+{
+"product_id":"SKU-00064",
+"product_name":"Lumen Linen Shirt",
+"category":"APPAREL",
+"list_price_paise":359900,
+"is_active":true
+},
+{
+"product_id":"SKU-00065",
+"product_name":"Kestrel Chinos",
+"category":"APPAREL",
+"list_price_paise":449900,
+"is_active":true
+},
+{
+"product_id":"SKU-00066",
+"product_name":"Terra Cotton Kurta",
+"category":"APPAREL",
+"list_price_paise":429900,
+"is_active":true
+},
+{
+"product_id":"SKU-00067",
+"product_name":"Aurora Comic Anthology",
+"category":"BOOKS",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00068",
+"product_name":"Terra Green Tea",
+"category":"GROCERY",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00069",
+"product_name":"Orchid Sandals",
+"category":"FOOTWEAR",
+"list_price_paise":669900,
+"is_active":true
+},
+{
+"product_id":"SKU-00070",
+"product_name":"Monsoon Linen Shirt",
+"category":"APPAREL",
+"list_price_paise":529900,
+"is_active":true
+},
+{
+"product_id":"SKU-00071",
+"product_name":"Monsoon Sneakers",
+"category":"FOOTWEAR",
+"list_price_paise":59900,
+"is_active":false
+},
+{
+"product_id":"SKU-00072",
+"product_name":"Cobalt Sunscreen",
+"category":"BEAUTY",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00073",
+"product_name":"Peak Running Shoes",
+"category":"FOOTWEAR",
+"list_price_paise":329900,
+"is_active":true
+},
+{
+"product_id":"SKU-00074",
+"product_name":"Peak Storage Jars",
+"category":"HOME_KITCHEN",
+"list_price_paise":79900,
+"is_active":true
+},
+{
+"product_id":"SKU-00075",
+"product_name":"Aurora Sunscreen",
+"category":"BEAUTY",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00076",
+"product_name":"Cobalt Saree",
+"category":"APPAREL",
+"list_price_paise":229900,
+"is_active":true
+},
+{
+"product_id":"SKU-00077",
+"product_name":"Aurora Air Fryer",
+"category":"APPLIANCES",
+"list_price_paise":259900,
+"is_active":true
+},
+{
+"product_id":"SKU-00078",
+"product_name":"Saffron Chinos",
+"category":"APPAREL",
+"list_price_paise":479900,
+"is_active":true
+},
+{
+"product_id":"SKU-00079",
+"product_name":"Terra Action Camera",
+"category":"ELECTRONICS",
+"list_price_paise":1599900,
+"is_active":true
+},
+{
+"product_id":"SKU-00080",
+"product_name":"Juniper Denim Jacket",
+"category":"APPAREL",
+"list_price_paise":309900,
+"is_active":true
+},
+{
+"product_id":"SKU-00081",
+"product_name":"Sable Loafers",
+"category":"FOOTWEAR",
+"list_price_paise":159900,
+"is_active":true
+},
+{
+"product_id":"SKU-00082",
+"product_name":"Zephyr Chinos",
+"category":"APPAREL",
+"list_price_paise":49900,
+"is_active":true
+},
+{
+"product_id":"SKU-00083",
+"product_name":"Cobalt Running Shoes",
+"category":"FOOTWEAR",
+"list_price_paise":489900,
+"is_active":true
+},
+{
+"product_id":"SKU-00084",
+"product_name":"Cobalt Chinos",
+"category":"APPAREL",
+"list_price_paise":169900,
+"is_active":true
+},
+{
+"product_id":"SKU-00085",
+"product_name":"Aurora Plush Toy",
+"category":"TOYS",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00086",
+"product_name":"Zephyr Water Purifier",
+"category":"APPLIANCES",
+"list_price_paise":4499900,
+"is_active":true
+},
+{
+"product_id":"SKU-00087",
+"product_name":"Cobalt Exam Guide",
+"category":"BOOKS",
+"list_price_paise":49900,
+"is_active":true
+},
+{
+"product_id":"SKU-00088",
+"product_name":"Sable Air Fryer",
+"category":"APPLIANCES",
+"list_price_paise":4959900,
+"is_active":true
+},
+{
+"product_id":"SKU-00089",
+"product_name":"Indigo Board Game",
+"category":"TOYS",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00090",
+"product_name":"Peak Induction Cooktop",
+"category":"APPLIANCES",
+"list_price_paise":2789900,
+"is_active":true
+},
+{
+"product_id":"SKU-00091",
+"product_name":"Indigo Bedsheet",
+"category":"HOME_KITCHEN",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00092",
+"product_name":"Orchid Lipstick",
+"category":"BEAUTY",
+"list_price_paise":279900,
+"is_active":true
+},
+{
+"product_id":"SKU-00093",
+"product_name":"Peak Saree",
+"category":"APPAREL",
+"list_price_paise":409900,
+"is_active":true
+},
+{
+"product_id":"SKU-00094",
+"product_name":"Orchid Gift Card",
+"category":"GIFT_CARDS",
+"list_price_paise":309900,
+"is_active":true
+},
+{
+"product_id":"SKU-00095",
+"product_name":"Saffron Hoodie",
+"category":"APPAREL",
+"list_price_paise":159900,
+"is_active":true
+},
+{
+"product_id":"SKU-00096",
+"product_name":"Zephyr Loafers",
+"category":"FOOTWEAR",
+"list_price_paise":349900,
+"is_active":true
+},
+{
+"product_id":"SKU-00097",
+"product_name":"Cobalt Running Tee",
+"category":"APPAREL",
+"list_price_paise":289900,
+"is_active":true
+},
+{
+"product_id":"SKU-00098",
+"product_name":"Zephyr Storage Jars",
+"category":"HOME_KITCHEN",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00099",
+"product_name":"Terra Running Tee",
+"category":"APPAREL",
+"list_price_paise":179900,
+"is_active":true
+},
+{
+"product_id":"SKU-00100",
+"product_name":"Peak Hair Oil",
+"category":"BEAUTY",
+"list_price_paise":229900,
+"is_active":true
+},
+{
+"product_id":"SKU-00101",
+"product_name":"Orchid Storage Jars",
+"category":"HOME_KITCHEN",
+"list_price_paise":389900,
+"is_active":true
+},
+{
+"product_id":"SKU-00102",
+"product_name":"Sable Building Blocks",
+"category":"TOYS",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00103",
+"product_name":"Juniper Tablet",
+"category":"ELECTRONICS",
+"list_price_paise":269900,
+"is_active":true
+},
+{
+"product_id":"SKU-00104",
+"product_name":"Juniper Chinos",
+"category":"APPAREL",
+"list_price_paise":149900,
+"is_active":true
+},
+{
+"product_id":"SKU-00105",
+"product_name":"Lumen Green Tea",
+"category":"GROCERY",
+"list_price_paise":7500,
+"is_active":true
+},
+{
+"product_id":"SKU-00106",
+"product_name":"Juniper Perfume",
+"category":"BEAUTY",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00107",
+"product_name":"Saffron Basmati Rice",
+"category":"GROCERY",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00108",
+"product_name":"Zephyr Formal Shoes",
+"category":"FOOTWEAR",
+"list_price_paise":119900,
+"is_active":true
+},
+{
+"product_id":"SKU-00109",
+"product_name":"Terra Chinos",
+"category":"APPAREL",
+"list_price_paise":229900,
+"is_active":true
+},
+{
+"product_id":"SKU-00110",
+"product_name":"Nimbus Mixer Grinder",
+"category":"APPLIANCES",
+"list_price_paise":489900,
+"is_active":false
+},
+{
+"product_id":"SKU-00111",
+"product_name":"Aurora Denim Jacket",
+"category":"APPAREL",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00112",
+"product_name":"Cobalt Hoodie",
+"category":"APPAREL",
+"list_price_paise":159900,
+"is_active":false
+},
+{
+"product_id":"SKU-00113",
+"product_name":"Juniper Tablet",
+"category":"ELECTRONICS",
+"list_price_paise":189900,
+"is_active":true
+},
+{
+"product_id":"SKU-00114",
+"product_name":"Sable Gift Card",
+"category":"GIFT_CARDS",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00115",
+"product_name":"Cobalt Board Game",
+"category":"TOYS",
+"list_price_paise":89900,
+"is_active":true
+},
+{
+"product_id":"SKU-00116",
+"product_name":"Peak Water Purifier",
+"category":"APPLIANCES",
+"list_price_paise":989900,
+"is_active":true
+},
+{
+"product_id":"SKU-00117",
+"product_name":"Nimbus Wireless Earbuds",
+"category":"ELECTRONICS",
+"list_price_paise":5409900,
+"is_active":true
+},
+{
+"product_id":"SKU-00118",
+"product_name":"Zephyr Denim Jacket",
+"category":"APPAREL",
+"list_price_paise":69900,
+"is_active":true
+},
+{
+"product_id":"SKU-00119",
+"product_name":"Kestrel Puzzle",
+"category":"TOYS",
+"list_price_paise":109900,
+"is_active":true
+},
+{
+"product_id":"SKU-00120",
+"product_name":"Sable Keyboard",
+"category":"ELECTRONICS",
+"list_price_paise":2429900,
+"is_active":true
+},
+{
+"product_id":"SKU-00121",
+"product_name":"Sable Dinner Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":119900,
+"is_active":true
+},
+{
+"product_id":"SKU-00122",
+"product_name":"Aurora RC Car",
+"category":"TOYS",
+"list_price_paise":239900,
+"is_active":true
+},
+{
+"product_id":"SKU-00123",
+"product_name":"Vega Hoodie",
+"category":"APPAREL",
+"list_price_paise":559900,
+"is_active":true
+},
+{
+"product_id":"SKU-00124",
+"product_name":"Peak Face Serum",
+"category":"BEAUTY",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00125",
+"product_name":"Saffron Cold-Pressed Oil",
+"category":"GROCERY",
+"list_price_paise":5900,
+"is_active":true
+},
+{
+"product_id":"SKU-00126",
+"product_name":"Zephyr Chinos",
+"category":"APPAREL",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00127",
+"product_name":"Cobalt Hoodie",
+"category":"APPAREL",
+"list_price_paise":39900,
+"is_active":true
+},
+{
+"product_id":"SKU-00128",
+"product_name":"Lumen Masala Box",
+"category":"GROCERY",
+"list_price_paise":8600,
+"is_active":true
+},
+{
+"product_id":"SKU-00129",
+"product_name":"Aurora Novel",
+"category":"BOOKS",
+"list_price_paise":29900,
+"is_active":false
+},
+{
+"product_id":"SKU-00130",
+"product_name":"Juniper Perfume",
+"category":"BEAUTY",
+"list_price_paise":319900,
+"is_active":true
+},
+{
+"product_id":"SKU-00131",
+"product_name":"Zephyr Lipstick",
+"category":"BEAUTY",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00132",
+"product_name":"Terra Basmati Rice",
+"category":"GROCERY",
+"list_price_paise":79900,
+"is_active":true
+},
+{
+"product_id":"SKU-00133",
+"product_name":"Sable Cold-Pressed Oil",
+"category":"GROCERY",
+"list_price_paise":16700,
+"is_active":true
+},
+{
+"product_id":"SKU-00134",
+"product_name":"Vega Keyboard",
+"category":"ELECTRONICS",
+"list_price_paise":179900,
+"is_active":true
+},
+{
+"product_id":"SKU-00135",
+"product_name":"Cobalt Biography",
+"category":"BOOKS",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00136",
+"product_name":"Monsoon Bedsheet",
+"category":"HOME_KITCHEN",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00137",
+"product_name":"Lumen Biography",
+"category":"BOOKS",
+"list_price_paise":29900,
+"is_active":true
+},
+{
+"product_id":"SKU-00138",
+"product_name":"Orchid Perfume",
+"category":"BEAUTY",
+"list_price_paise":309900,
+"is_active":true
+},
+{
+"product_id":"SKU-00139",
+"product_name":"Peak Power Bank",
+"category":"ELECTRONICS",
+"list_price_paise":739900,
+"is_active":true
+},
+{
+"product_id":"SKU-00140",
+"product_name":"Indigo Cookbook",
+"category":"BOOKS",
+"list_price_paise":109900,
+"is_active":true
+},
+{
+"product_id":"SKU-00141",
+"product_name":"Lumen Hoodie",
+"category":"APPAREL",
+"list_price_paise":319900,
+"is_active":true
+},
+{
+"product_id":"SKU-00142",
+"product_name":"Nimbus Running Tee",
+"category":"APPAREL",
+"list_price_paise":199900,
+"is_active":true
+},
+{
+"product_id":"SKU-00143",
+"product_name":"Nimbus Sneakers",
+"category":"FOOTWEAR",
+"list_price_paise":139900,
+"is_active":true
+},
+{
+"product_id":"SKU-00144",
+"product_name":"Sable Dinner Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":799900,
+"is_active":true
+},
+{
+"product_id":"SKU-00145",
+"product_name":"Kestrel Cookware Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":59900,
+"is_active":true
+},
+{
+"product_id":"SKU-00146",
+"product_name":"Peak Air Fryer",
+"category":"APPLIANCES",
+"list_price_paise":609900,
+"is_active":true
+},
+{
+"product_id":"SKU-00147",
+"product_name":"Juniper Cookware Set",
+"category":"HOME_KITCHEN",
+"list_price_paise":419900,
+"is_active":true
+},
+{
+"product_id":"SKU-00148",
+"product_name":"Orchid Linen Shirt",
+"category":"APPAREL",
+"list_price_paise":39900,
+"is_active":false
+},
+{
+"product_id":"SKU-00149",
+"product_name":"Nimbus Gift Card",
+"category":"GIFT_CARDS",
+"list_price_paise":329900,
+"is_active":true
+},
+{
+"product_id":"SKU-00150",
+"product_name":"Nimbus Masala Box",
+"category":"GROCERY",
+"list_price_paise":6100,
+"is_active":false
+}
+]
